@@ -27,7 +27,7 @@ jobs:
         run: python -m py_compile app.py backend/app.py backend/web_bridge.py
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: "22"
           cache: npm
