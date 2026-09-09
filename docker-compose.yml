@@ -1,0 +1,21 @@
+services:
+  motion-lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: motion-lab:local
+    ports:
+      - "${MOTION_LAB_PORT:-5000}:5000"
+    environment:
+      MOTION_LAB_WEB: "1"
+      MOTION_LAB_CAMERA: /dev/video0
+    devices:
+      - "${MOTION_LAB_DEVICE:-/dev/video0}:/dev/video0"
+    volumes:
+      - motion-cache:/app/motion_cache
+      - uploaded-sources:/app/uploaded_sources
+    restart: unless-stopped
+
+volumes:
+  motion-cache:
+  uploaded-sources:

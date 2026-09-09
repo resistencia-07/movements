@@ -1,0 +1,68 @@
+* { box-sizing: border-box; }
+html { min-width: 320px; background: #edf5f7; }
+body { margin: 0; min-width: 320px; }
+button { font: inherit; cursor: pointer; }
+button:disabled { cursor: wait; opacity: .65; }
+#root { min-height: 100vh; }
+.error-banner { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; border-color: rgba(194, 87, 97, .45); color: #9f3945; background: rgba(255, 239, 241, .8); }
+.error-banner::before { content: "!"; display: grid; place-items: center; width: 22px; height: 22px; flex: 0 0 22px; border: 1px solid currentColor; border-radius: 50%; font-size: 12px; font-weight: 800; }
+.camera-selector { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 18px; padding: 14px 18px; }
+.camera-selector strong, .camera-selector small { display: block; }
+.camera-selector strong { color: var(--ink); font-size: 13px; font-weight: 650; }
+.camera-selector small { margin-top: 4px; color: var(--muted); font-size: 11px; }
+.camera-selector select { min-width: 190px; min-height: 38px; padding: 0 34px 0 11px; border: 1px solid rgba(11,159,152,.28); border-radius: 9px; color: var(--ink); background: rgba(255,255,255,.66); }
+.camera-selector select:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.camera-selector select:hover { border-color: rgba(11,159,152,.5); background: rgba(255,255,255,.82); }
+.camera-selector select:disabled { cursor: wait; opacity: .6; }
+.reference-source { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 18px; padding: 14px 18px; }
+.reference-source strong, .reference-source small { display: block; }
+.reference-source strong { color: var(--ink); font-size: 13px; font-weight: 650; }
+.reference-source small { max-width: 420px; margin-top: 4px; color: var(--muted); font-size: 11px; }
+.reference-source-actions { display: flex; align-items: center; justify-content: flex-end; gap: 9px; }
+.file-button { position: relative; overflow: hidden; }
+.file-button input { position: absolute; inset: 0; width: 100%; height: 100%; cursor: pointer; opacity: 0; }
+.youtube-form { display: flex; gap: 7px; }
+.youtube-form input { width: 210px; min-height: 39px; padding: 0 11px; border: 1px solid rgba(28,73,96,.15); border-radius: 9px; color: var(--ink); background: rgba(255,255,255,.6); }
+.youtube-form input:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.floating-practice { position: fixed; right: 24px; bottom: 24px; z-index: 5; }
+.practice-stage { min-height: 460px; margin-bottom: 16px; }
+.practice-stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .7fr); gap: 16px; }
+.browser-camera, .practice-reference { position: relative; min-height: 430px; overflow: hidden; border: 1px solid rgba(28, 73, 96, .14); border-radius: 12px; background: #dcecef; }
+.browser-camera img { width: 100%; height: 100%; min-height: 430px; display: block; object-fit: cover; transform: scaleX(-1); background: #cbdfe5; }
+.camera-feed-label, .camera-feed-error { position: absolute; left: 14px; z-index: 1; padding: 6px 8px; border-radius: 6px; font-size: 10px; }
+.camera-feed-label { top: 14px; color: #126e70; background: rgba(255, 255, 255, .72); }
+.camera-feed-error { right: 14px; bottom: 14px; margin: 0; color: #9f3945; background: rgba(255, 239, 241, .9); }
+.practice-reference .analysis-figure { top: 25%; }
+.camera-preview { isolation: isolate; }
+.camera-preview::after { content: ""; position: absolute; inset: 14px; pointer-events: none; border: 1px solid rgba(255,255,255,.32); border-radius: 8px; opacity: .55; }
+.camera-preview .scan-lines { z-index: 1; }
+.camera-preview .preview-skeleton { transition: opacity .25s ease, transform .25s ease; }
+.camera-preview:hover .preview-skeleton { opacity: .92; transform: translateX(-50%) scale(1.02); }
+.primary-button:active, .secondary-button:active, .nav-link:active { transform: scale(.98); transition-duration: .08s; }
+.primary-button:focus-visible, .secondary-button:focus-visible, .nav-link:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.live-pulse.is-muted { animation: none; background: var(--faint); box-shadow: none; }
+@media (max-width: 800px) { .practice-stage { grid-template-columns: 1fr; }.browser-camera, .practice-reference, .browser-camera img { min-height: 300px; } }
+@media (max-width: 600px) { .camera-selector { align-items: stretch; flex-direction: column; gap: 11px; }.camera-selector select { width: 100%; } }
+@media (max-width: 800px) { .reference-source { align-items: stretch; flex-direction: column; }.reference-source-actions { align-items: stretch; flex-direction: column; }.youtube-form input { width: 100%; }.youtube-form { flex-direction: column; } }
+.status-dot.offline { background: #c25761; box-shadow: 0 0 12px #c25761; }
+
+@media (prefers-reduced-motion: reduce) {
+	.camera-preview .preview-skeleton { transition: none; }
+}
+
+@media (max-width: 700px) {
+	body { padding-bottom: 72px; }
+	.sidebar { position: fixed; right: 0; bottom: 0; left: 0; z-index: 20; display: block; width: auto; min-height: 66px; height: 66px; padding: 7px 8px; border-top: 1px solid rgba(255,255,255,.72); border-right: 0; border-radius: 18px 18px 0 0; box-shadow: 0 -12px 35px rgba(63,112,130,.14); }
+	.sidebar .brand, .sidebar-section > .eyebrow, .sidebar-bottom { display: none; }
+	.sidebar-section, .nav-list { height: 100%; }
+	.nav-list { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px; }
+	.nav-link { min-height: 52px; padding: 4px 2px; justify-content: center; flex-direction: column; gap: 2px; border-radius: 10px; font-size: 9px; line-height: 1.1; text-transform: capitalize; }
+	.nav-icon { width: auto; height: 18px; font-size: 12px; line-height: 18px; }
+	.nav-link.active { box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 4px 14px rgba(73,119,138,.08); }
+	.topbar { position: sticky; top: 0; z-index: 10; background: rgba(237,245,247,.7); backdrop-filter: blur(18px) saturate(125%); }
+	.content-wrap { padding-bottom: 26px; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+	.sidebar, .topbar, .camera-selector { background: rgba(237,245,247,.98); backdrop-filter: none; }
+}
