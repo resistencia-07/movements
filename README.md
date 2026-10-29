@@ -87,4 +87,12 @@ python -m py_compile app.py backend/app.py backend/web_bridge.py
 cd frontend && npm run lint && npm run build
 ```
 
-The pose model and `dance.mp4` are required runtime assets. Generated caches, virtual environments, build output, and temporary media should not be committed.
+The pose model and `dance.mp4` are required runtime assets. Generated caches, virtual environments, build output, and temporary media should not be committed
+
+# aravindhan  update 
+
+AI Dance Coach is a local movement-analysis application for dance practice. It combines an OpenCV and MediaPipe pose engine with a React frontend served by Flask.
+its main scope is replacing a dance coucha and analysis body movement  and teach the dance step in the room witha camera and and oour software . 
+
+usage is mediapipe and python to establish the code structure and Multiple projection in ed model on the camera output show the danceing movement . but its stilll in hold and uses the venv file and demonstration in Movement tracking project . 
+ 
