@@ -95,4 +95,11 @@ AI Dance Coach is a local movement-analysis application for dance practice. It c
 its main scope is replacing a dance coucha and analysis body movement  and teach the dance step in the room witha camera and and oour software . 
 
 usage is mediapipe and python to establish the code structure and Multiple projection in ed model on the camera output show the danceing movement . but its stilll in hold and uses the venv file and demonstration in Movement tracking project . 
+
+# Advantages - 
+AI replace the human coach to teach a person step by step and guide throught the mistakes . and improve ur dance step
+
+# Dis- advantage - 
+Ai model is large ML and it possess through the camera so it cause the heating issue in live session . It need Graphis card Support for better learn  . 
+
  
